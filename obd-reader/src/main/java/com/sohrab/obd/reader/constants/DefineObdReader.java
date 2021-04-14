@@ -8,7 +8,7 @@ package com.sohrab.obd.reader.constants;
 
 public interface DefineObdReader {
 
-    String ACTION_OBD_CONNECTION_STATUS = "ACTION_OBD_CONNECTION_STATUS";
+    String ACTION_CONNECTION_STATUS_MSG = "ACTION_OBD_CONNECTION_STATUS";
     /**
      * Real-time data
      */
