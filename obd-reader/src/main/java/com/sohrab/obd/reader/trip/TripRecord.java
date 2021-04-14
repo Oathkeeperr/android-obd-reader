@@ -26,6 +26,8 @@ import java.util.UUID;
  */
 
 public class TripRecord implements DefineObdReader {
+ 
+    private static final int LONG_TERM_FUEL=0;
     private static Context sContext;
     int MINUS_ONE = -1;
     private static final int SPEED_GAP = 20;
