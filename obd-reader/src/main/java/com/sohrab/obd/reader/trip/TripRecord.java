@@ -39,6 +39,8 @@ public class TripRecord implements DefineObdReader {
     private static final float GRAM_TO_LITRE_PROPANE = 493f;
     private final static String ENGINE_RPM = "Engine RPM";
     private final static String VEHICLE_SPEED = "Vehicle Speed";
+    private final static String LONG_TERM_FUEL_CONSUMPTION = "LONG_TERM_FUEL_CONSUMPTION";
+    private final static String SHORT_TERM_FUEL_CONSUMPTION = "SHORT_TERM_FUEL_CONSUMPTION";
     private final static String ENGINE_RUNTIME = "Engine Runtime";
     private final static String MAF = "Mass Air Flow";
     private final static String FUEL_LEVEL = "Fuel Level";
@@ -89,6 +91,8 @@ public class TripRecord implements DefineObdReader {
     private int mRapidAccTimes;
     private int mRapidDeclTimes;
     private float mInsFuelConsumption = 0.0f;
+    private float mLongFuelConsumption = 0.0f;
+    private float mShortFuelConsumption = 0.0f;
     private float mDrivingFuelConsumption = 0.0f;
     private float mIdlingFuelConsumption = 0.0f;
     private String mFuelLevel;
@@ -332,8 +336,16 @@ public class TripRecord implements DefineObdReader {
 
         switch (name) {
 
-            case VEHICLE_SPEED:
+            case LONG_TERM_FUEL_CONSUMPTION:
                 setSpeed(((SpeedCommand) command).getMetricSpeed());
+                break;
+
+            case SHORT_TERM_FUEL_CONSUMPTION:
+                setShortFuel(((LongFuelConsumptionCommand) command).getConsumption());
+                break;
+
+            case VEHICLE_SPEED:
+                setLongFuel(((ShortFuelConsumptionCommand) command).getConsumption());
                 break;
 
             case ENGINE_RPM:
